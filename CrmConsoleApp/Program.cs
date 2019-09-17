@@ -23,7 +23,6 @@ namespace CrmConsoleApp
                 {
                     proxy.EnableProxyTypes();
 
-                    _accRepository = new AccountRepository(proxy);
                     var appLogic = new AppLogic(proxy);
 
                     Console.WriteLine("Press 1 to create account");
