@@ -29,7 +29,7 @@ namespace CrmConsoleApp
 
                 if (acc is null)
                 {
-                    Console.WriteLine("Can't find user with this name");
+                    Console.WriteLine($"Can't find user with name: {name}");
                 }
                 else
                 {
@@ -84,10 +84,18 @@ namespace CrmConsoleApp
 
         public void DisplayAccounts(List<Account> accs)
         {
-            foreach (var item in accs)
+            if (accs != null && accs.Count > 0)
             {
-                Console.WriteLine(String.Format("|{0,15}|{1,15}|{2,15}|{3,15}|", item.Name, item.EMailAddress1, item.Telephone1, item.Address1_City));
+                foreach (var item in accs)
+                {
+                    Console.WriteLine(String.Format("|{0,15}|{1,15}|{2,15}|{3,15}|", item.Name, item.EMailAddress1, item.Telephone1, item.Address1_City));
+                }
             }
+            else
+            {
+                Console.WriteLine("No items to display...");
+            }
+
         }
     }
 }

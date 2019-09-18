@@ -26,9 +26,10 @@ namespace CrmConsoleApp
                     Console.WriteLine("Press 3 to query accounts");
                     Console.WriteLine("Press x to exit");
 
-                    string line = "";
-                    while ((line = Console.ReadLine()) != "x")
+                    while (true)
                     {
+                        string line = Console.ReadLine();
+
                         switch (line)
                         {
                             case "1":
@@ -40,6 +41,9 @@ namespace CrmConsoleApp
                             case "3":
                                 var accs = appService.QueryAccounts();
                                 appService.DisplayAccounts(accs);
+                                break;
+                            case "x":
+                                Environment.Exit(0);
                                 break;
                             default:
                                 Console.WriteLine("Invalid character, try again...");
