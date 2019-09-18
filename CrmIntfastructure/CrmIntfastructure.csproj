@@ -93,7 +93,7 @@
     <Compile Include="Models\CrmServiceContext.cs" />
     <Compile Include="Models\OptionSets.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\AccountRepository.cs" />
+    <Compile Include="Repositories\AccountRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\coretools\CrmSvcUtil.exe" />

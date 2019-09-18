@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace CrmConsoleApp
 {
-    public class AppLogic
+    public class AppService
     {
         private AccountRepository _accRepository;
 
-        public AppLogic(OrganizationServiceProxy proxy)
+        public AppService(OrganizationServiceProxy proxy)
         {
             this._accRepository = new AccountRepository(proxy);
         }
@@ -63,18 +63,17 @@ namespace CrmConsoleApp
         {
             try
             {
-                var acc = new Account();
                 Console.WriteLine("Create account...");
                 Console.Write("Enter Name: ");
-                acc.Name = Console.ReadLine();
+                var name = Console.ReadLine();
                 Console.Write("Email: ");
-                acc.EMailAddress1 = Console.ReadLine();
+                var email = Console.ReadLine();
                 Console.Write("Telephone: ");
-                acc.Telephone1 = Console.ReadLine();
+                var phone = Console.ReadLine();
                 Console.Write("City: ");
-                acc.Address1_City = Console.ReadLine();
+                var city = Console.ReadLine();
 
-                _accRepository.Create(acc);
+                _accRepository.Create(name, email, phone, city);
                 Console.WriteLine("Success \n");
             }
             catch (Exception)
@@ -85,13 +84,10 @@ namespace CrmConsoleApp
 
         public void DisplayAccounts(List<Account> accs)
         {
-            Console.WriteLine("-----------------------------------------------");
             foreach (var item in accs)
             {
-                Console.WriteLine(String.Format("|{0,5}|{1,5}|{2,5}|{3,5}|", item.Name, item.EMailAddress1, item.Telephone1, item.Address1_City));
+                Console.WriteLine(String.Format("|{0,15}|{1,15}|{2,15}|{3,15}|", item.Name, item.EMailAddress1, item.Telephone1, item.Address1_City));
             }
-            Console.WriteLine("-----------------------------------------------");
-
         }
     }
 }

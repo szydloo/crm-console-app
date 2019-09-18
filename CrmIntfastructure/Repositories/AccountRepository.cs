@@ -12,14 +12,21 @@ namespace CrmIntfastructure.Repositories
     public class AccountRepository
     {
         private readonly IOrganizationService _service;
+
         public AccountRepository(IOrganizationService service)
         {
             _service = service;
 
         }
-        public void Create(Account acc)
+        public void Create(string name, string email, string telephone, string city)
         {
-            _service.Create(acc);
+            _service.Create(new Account
+            {
+                Name = name,
+                EMailAddress1 = email,
+                Telephone1 = telephone,
+                Address1_City = city
+            });
         }
 
         public void Delete(Guid id)
@@ -36,12 +43,15 @@ namespace CrmIntfastructure.Repositories
 
         public Account GetByName(string name)
         {
-            using (var context = new CrmOrganizationServiceContext(_service))
+            if(name != null && name.Length > 0)
             {
-                var acc = context.CreateQuery<Account>().Where(x => x.Name == name).FirstOrDefault();
-                return acc;
+                using (var context = new CrmOrganizationServiceContext(_service))
+                {
+                    var acc = context.CreateQuery<Account>().Where(x => x.Name == name).FirstOrDefault();
+                    return acc;
+                }
             }
-
+            return null;
         }
 
         public List<Account> GetAllByName(string name)

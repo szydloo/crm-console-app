@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using CrmIntfastructure.Repositories;
-using System.Collections.Generic;
-using CrmEarlyBound;
 using System.ServiceModel.Description;
 using Microsoft.Xrm.Sdk.Client;
 
@@ -10,7 +7,6 @@ namespace CrmConsoleApp
 {
     class Program
     {
-        private static AccountRepository _accRepository;
 
         static void Main(string[] args)
         {
@@ -23,7 +19,7 @@ namespace CrmConsoleApp
                 {
                     proxy.EnableProxyTypes();
 
-                    var appLogic = new AppLogic(proxy);
+                    var appService = new AppService(proxy);
 
                     Console.WriteLine("Press 1 to create account");
                     Console.WriteLine("Press 2 to delete account");
@@ -36,14 +32,14 @@ namespace CrmConsoleApp
                         switch (line)
                         {
                             case "1":
-                                appLogic.CreateAccount();
+                                appService.CreateAccount();
                                 break;
                             case "2":
-                                appLogic.DeleteAccount();
+                                appService.DeleteAccount();
                                 break;
                             case "3":
-                                var accs = appLogic.QueryAccounts();
-                                appLogic.DisplayAccounts(accs);
+                                var accs = appService.QueryAccounts();
+                                appService.DisplayAccounts(accs);
                                 break;
                             default:
                                 Console.WriteLine("Invalid character, try again...");
