@@ -123,9 +123,9 @@
     <Folder Include="bin\Debug\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CrmIntfastructure\CrmIntfastructure.csproj">
+    <ProjectReference Include="..\CrmIntfastructure\Crm.Intfastructure.csproj">
       <Project>{d7e0ee58-1acb-4222-887d-73d76b7921fb}</Project>
-      <Name>CrmIntfastructure</Name>
+      <Name>Crm.Intfastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

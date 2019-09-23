@@ -24,6 +24,7 @@ namespace CrmConsoleApp
                     Console.WriteLine("Press 1 to create account");
                     Console.WriteLine("Press 2 to delete account");
                     Console.WriteLine("Press 3 to query accounts");
+                    Console.WriteLine("Press 4 to create concurrently accounts");
                     Console.WriteLine("Press x to exit");
 
                     while (true)
@@ -41,6 +42,9 @@ namespace CrmConsoleApp
                             case "3":
                                 var accs = appService.QueryAccounts();
                                 appService.DisplayAccounts(accs);
+                                break;
+                            case "4":
+                                appService.CreateConcurrentlyAccs();
                                 break;
                             case "x":
                                 Environment.Exit(0);

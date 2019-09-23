@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CrmConsoleApp
@@ -82,13 +83,38 @@ namespace CrmConsoleApp
             }
         }
 
+        internal void CreateConcurrentlyAccs()
+        {
+            try
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    var t = new Thread(CreateHundredAccs);
+                    t.Start();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void CreateHundredAccs()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                this._accRepository.Create($"testnameP{Thread.CurrentThread.ManagedThreadId}.{i}", $"email@.email.com", $"phone", $"city");
+            }
+        }
+
         public void DisplayAccounts(List<Account> accs)
         {
             if (accs != null && accs.Count > 0)
             {
                 foreach (var item in accs)
                 {
-                    Console.WriteLine(String.Format("|{0,15}|{1,15}|{2,15}|{3,15}|", item.Name, item.EMailAddress1, item.Telephone1, item.Address1_City));
+                    Console.WriteLine(String.Format("|{0,15}|{1,15}|{2,15}|{3,15}|{4,15}", item.Name, item.EMailAddress1, item.Telephone1, item.Address1_City, item.AccountNumber));
                 }
             }
             else
